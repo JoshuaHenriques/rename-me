@@ -4,46 +4,18 @@
     Springboot RESTful backend API Bootstrap
   </p>
 </p>
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Springboot RESTful API bootstrap for a more complete project from spring initializer. Springboot 2.5.3 w/ Java 11 w/ Gradle
-    Includes
-
+Springboot RESTful API bootstrap for a more complete project from spring initializer.
+    Includes one:
     Controller, Service, Repository, Model, Exception
-    Tests
-
+    Tests:
     ControllerUnitTest, ControllerWebMvcTest, ServiceUnitTest, RepositoryJpaTest
-    Dependencies
-
+    Dependencies:
     Spring Boot DevTools, Spring Web, Spring Data JPA, Lombok, Rest Repositories, PostgreSQL Driver
 
 ### Built With
@@ -51,8 +23,6 @@ Springboot RESTful API bootstrap for a more complete project from spring initial
 * [Springboot 2.5.3]
 * [Java 11]
 * [Gradle]
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
