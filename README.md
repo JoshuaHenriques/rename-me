@@ -1,8 +1,4 @@
 <p align="center">
-  <a href="https://github.com/joshuahenriques/rename-me">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">rename-me</h3>
 
   <p align="center">
