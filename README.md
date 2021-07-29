@@ -8,13 +8,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Springboot RESTful API bootstrap for a more complete project from spring initializer.
 
     Includes One:    
     Controller, Service, Repository, Model, Exception
-    Tests:
+    Incudled Tests:
     ControllerUnitTest, ControllerWebMvcTest, ServiceUnitTest, RepositoryJpaTest
     Dependencies:
     Spring Boot DevTools, Spring Web, Spring Data JPA, Lombok, Rest Repositories, PostgreSQL Driver
