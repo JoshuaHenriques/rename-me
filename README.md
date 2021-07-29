@@ -11,7 +11,8 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Springboot RESTful API bootstrap for a more complete project from spring initializer.
-    Includes one:
+
+    Includes One:    
     Controller, Service, Repository, Model, Exception
     Tests:
     ControllerUnitTest, ControllerWebMvcTest, ServiceUnitTest, RepositoryJpaTest
