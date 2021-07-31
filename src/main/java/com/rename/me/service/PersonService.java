@@ -21,7 +21,7 @@ public class PersonService {
      *
      * @param personRepository the person repository
      */
-@Autowired
+    @Autowired
     public PersonService(PersonRepository personRepository) {
 
         this.personRepository = personRepository;

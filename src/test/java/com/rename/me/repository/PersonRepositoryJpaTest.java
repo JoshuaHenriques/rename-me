@@ -5,6 +5,7 @@ import java.text.ParseException;
 import com.rename.me.model.Person;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@Disabled
 public class PersonRepositoryJpaTest {
 	
 	@Autowired

@@ -20,7 +20,7 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
      * @param email the email
      * @return the boolean
      */
-@Query("select case when count(c) > 0 then true else false end from Customer c where lower(c.email) like lower(:email)")
+@Query("select case when count(c) > 0 then true else false end from Person p where lower(p.email) like lower(:email)")
     boolean existsByEmail(@Param("email") String email);
 
     /**
@@ -29,6 +29,6 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
      * @param email the email
      * @return the by email
      */
-@Query(value = "SELECT * FROM customers WHERE customers.email=:email", nativeQuery = true)
+@Query(value = "SELECT * FROM person WHERE person.email=:email", nativeQuery = true)
     Person getByEmail(@Param("email") String email);
 }

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -22,6 +23,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "person")
 public class Person implements Serializable {
+	
+	@Id
 	private UUID personUUID;
 
 	private String firstName;

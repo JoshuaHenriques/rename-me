@@ -25,34 +25,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/person")
 public class PersonController {
-	private final PersonService personService;
 
-  /**
-   * Instantiates a new Person controller.
-   *
-   * @param personService the person service
-   */
-  @Autowired
-  public PersonController(PersonService personService) {
-		this.personService = personService;
-	}
+    private final PersonService personService;
 
-  /**
-   * Add response entity.
-   *
-   * @param person the person
-   * @return the response entity
-   * @throws PersonAlreadyExistsException the person already exists exception
-   * @throws PersonDoesNotExistsException the person does not exists exception
-   */
-  @PostMapping(
-      value = "/add",
-      consumes = MediaType.APPLICATION_JSON_VALUE,
-      produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String> add(@RequestBody Person person)
-      throws PersonAlreadyExistsException, PersonDoesNotExistsException {
+    /**
+     * Instantiates a new Person controller.
+     *
+     * @param personService the person service
+     */
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
-		if (personService.existsByEmail(person.getEmail()))
+    /**
+     * Add response entity.
+     *
+     * @param person the person
+     * @return the response entity
+     * @throws PersonAlreadyExistsException the person already exists exception
+     * @throws PersonDoesNotExistsException the person does not exists exception
+     */
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> add(@RequestBody Person person)
+            throws PersonAlreadyExistsException, PersonDoesNotExistsException {
+
+        if (personService.existsByEmail(person.getEmail()))
             throw new PersonAlreadyExistsException();
 
         personService.save(person);
@@ -62,36 +60,34 @@ public class PersonController {
         return new ResponseEntity<>("Successfully Created Person", responseHeaders, HttpStatus.CREATED);
     }
 
-  /**
-   * Update person.
-   *
-   * @param person the person
-   * @return the response entity
-   * @throws PersonDoesNotExistsException the person not found exception
-   */
-  @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String> update(@RequestBody Person person)
-      throws PersonDoesNotExistsException {
-            if (personService.existsByEmail(person.getEmail())) {
-                personService.update(person);
+    /**
+     * Update person.
+     *
+     * @param person the person
+     * @return the response entity
+     * @throws PersonDoesNotExistsException the person not found exception
+     */
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> update(@RequestBody Person person) throws PersonDoesNotExistsException {
+        if (personService.existsByEmail(person.getEmail())) {
+            personService.update(person);
 
-                HttpHeaders responseHeaders = new HttpHeaders();
-                responseHeaders.set("PersonController", "update");
-                return new ResponseEntity<>("Successfully Updated Person", responseHeaders, HttpStatus.OK);
-            } else
-                throw new PersonDoesNotExistsException();
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("PersonController", "update");
+            return new ResponseEntity<>("Successfully Updated Person", responseHeaders, HttpStatus.OK);
+        } else
+            throw new PersonDoesNotExistsException();
     }
 
-  /**
-   * Delete person.
-   *
-   * @param email the email
-   * @return the response entity
-   * @throws PersonDoesNotExistsException the person not found exception
-   */
-  @DeleteMapping(value = "/delete/{email}")
-  public ResponseEntity<String> delete(@PathVariable String email)
-      throws PersonDoesNotExistsException {
+    /**
+     * Delete person.
+     *
+     * @param email the email
+     * @return the response entity
+     * @throws PersonDoesNotExistsException the person not found exception
+     */
+    @DeleteMapping(value = "/delete/{email}")
+    public ResponseEntity<String> delete(@PathVariable String email) throws PersonDoesNotExistsException {
         if (personService.existsByEmail(email)) {
             Person _customer = personService.getByEmail(email);
             personService.delete(_customer);
@@ -103,13 +99,13 @@ public class PersonController {
             throw new PersonDoesNotExistsException();
     }
 
-  /**
-   * List all response entity.
-   *
-   * @return the response entity
-   */
-  @GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Person>> listAll() {
+    /**
+     * List all response entity.
+     *
+     * @return the response entity
+     */
+    @GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Person>> listAll() {
         // @RequestParam(defaultValue = "email") String sortBy
         List<Person> list = personService.findAll(); // sortBy
 
@@ -118,23 +114,22 @@ public class PersonController {
         return new ResponseEntity<>(list, responseHeaders, HttpStatus.OK);
     }
 
-  /**
-   * Gets by email.
-   *
-   * @param email the email
-   * @return the by email
-   * @throws PersonDoesNotExistsException the person not found exception
-   */
-  @GetMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Person> getByEmail(@PathVariable String email)
-      throws PersonDoesNotExistsException {
-            if (personService.existsByEmail(email)) {
-                Person _customer = personService.getByEmail(email);
+    /**
+     * Gets by email.
+     *
+     * @param email the email
+     * @return the by email
+     * @throws PersonDoesNotExistsException the person not found exception
+     */
+    @GetMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Person> getByEmail(@PathVariable String email) throws PersonDoesNotExistsException {
+        if (personService.existsByEmail(email)) {
+            Person _customer = personService.getByEmail(email);
 
-                HttpHeaders responseHeaders = new HttpHeaders();
-                responseHeaders.set("PersonController", "getByEmail");
-                return new ResponseEntity<>(_customer, responseHeaders, HttpStatus.OK);
-            } else
-                throw new PersonDoesNotExistsException();
-		}
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("PersonController", "getByEmail");
+            return new ResponseEntity<>(_customer, responseHeaders, HttpStatus.OK);
+        } else
+            throw new PersonDoesNotExistsException();
+    }
 }
