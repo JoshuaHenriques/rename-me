@@ -4,7 +4,6 @@ import com.rename.me.exception.PersonAlreadyExistsException;
 import com.rename.me.exception.PersonDoesNotExistsException;
 import com.rename.me.model.Person;
 import com.rename.me.service.PersonService;
-import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +35,7 @@ public class PersonControllerTest {
 
   @Captor private ArgumentCaptor<String> captorString;
 
-  private Person person, person2, person3;
+  private Person person;
 
   private List<Person> personList;
 
@@ -44,9 +43,9 @@ public class PersonControllerTest {
   void setUp() throws ParseException {
     person = new Person("Amy", "Sanders", "sanders.amy09@gmail.com", "05/24/1986");
 
-    person2 = new Person("Adam", "Ali", "ali.adam@gmail.com", "09/04/1934");
+    Person person2 = new Person("Adam", "Ali", "ali.adam@gmail.com", "09/04/1934");
 
-    person3 = new Person("Sheff", "Bonehead", "bonehead.sheff@gmail.com", "01/21/1995");
+    Person person3 = new Person("Sheff", "Bonehead", "bonehead.sheff@gmail.com", "01/21/1995");
 
     personList = new ArrayList<>();
     personList.add(person);
@@ -69,7 +68,7 @@ public class PersonControllerTest {
   }
 
   /**
-   * Register throws customer already exists exception.
+   * Register throws person already exists exception.
    */
   @Test
   void addThrowsPersonAlreadyExistsException() {
@@ -93,7 +92,7 @@ public class PersonControllerTest {
   }
 
   /**
-   * Update customer throws customer already exists exception.
+   * Update person throws person already exists exception.
    */
   @Test
   void updateThrowsPersonDoesNotException() {
@@ -105,14 +104,84 @@ public class PersonControllerTest {
   }
 
   @Test
-  void delete() {}
+  void delete() throws PersonDoesNotExistsException {
+    given(personService.existsByEmail(person.getEmail())).willReturn(true);
+    given(personService.getByEmail(person.getEmail())).willReturn(person);
+
+    ResponseEntity<String> response = personController.delete(person.getEmail());
+
+    then(personService).should().delete(captorPerson.capture());
+
+    assertThat(captorPerson.getValue()).isEqualTo(person);
+    assertThat(captorPerson.getValue().getEmail()).isEqualTo(person.getEmail());
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+  }
+
+  /**
+   * Delete person throws person not found exception.
+   */
+  @Test
+  void deleteThrowsPersonDoesNotExistsException() {
+    given(personService.existsByEmail(person.getEmail())).willReturn(false);
+
+    assertThrows(PersonDoesNotExistsException.class, () -> {
+      personController.delete(person.getEmail());
+    });
+  }
 
   @Test
-  void listAll() {}
+  void listAll() {
+    given(personService.findAll()).willReturn(personList);
+    ResponseEntity<List<Person>> response = personController.listAll();
+
+    then(personService).should().findAll();
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(response.getBody()).isEqualTo(personList);
+  }
 
   @Test
-  void getByEmail() {}
+  void getByEmail() throws PersonDoesNotExistsException {
+    given(personService.existsByEmail("testMe@gmail.com")).willReturn(true);
+
+    ResponseEntity<Person> response = personController.getByEmail("testMe@gmail.com");
+
+    then(personService).should().getByEmail(captorString.capture());
+
+    assertThat("testMe@gmail.com").isEqualTo(captorString.getValue());
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+  }
+
+  /**
+   * Gets by email throws person not found exception.
+   */
+  @Test
+  void getByEmailThrowsPersonDoesNotExistsException() {
+    given(personService.existsByEmail("testMe@gmail.com")).willReturn(false);
+
+    assertThrows(PersonDoesNotExistsException.class, () -> {
+      personController.getByEmail("testMe@gmail.com");
+    });
+  }
 
   @Test
-  void existsByEmail() {}
+  void existsByEmailReturnsTrue() {
+    given(personService.existsByEmail("test.email@gmail.com")).willReturn(true);
+    ResponseEntity<Boolean> response = personController.existsByEmail("test.email@gmail.com");
+
+    then(personService).should().existsByEmail(captorString.capture());
+
+    assertThat("test.email@gmail.com").isEqualTo(captorString.getValue());
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+  }
+
+  @Test
+  void existsByEmailReturnsFalse() {
+    given(personService.existsByEmail("test.email@gmail.com")).willReturn(false);
+    ResponseEntity<Boolean> response = personController.existsByEmail("test.email@gmail.com");
+
+    then(personService).should().existsByEmail(captorString.capture());
+
+    assertThat("test.email@gmail.com").isEqualTo(captorString.getValue());
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+  }
 }
