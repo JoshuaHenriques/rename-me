@@ -18,7 +18,7 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
    * @return the boolean
    */
   @Query(
-      "select case when count(c) > 0 then true else false end from Person p where lower(p.email) like lower(:email)")
+      "select case when count(p)> 0 then true else false end from Person p where lower(p.email) like lower(:email)")
   boolean existsByEmail(@Param("email") String email);
 
   /**
