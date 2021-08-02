@@ -26,9 +26,8 @@ public class Person implements Serializable {
   private String firstName;
   private String lastName;
   private String email;
-  private String phoneNumber;
 
-  private Date dateOfBirth;
+  private String dateOfBirth;
 
   /**
    * Instantiates a new Person.
@@ -44,18 +43,6 @@ public class Person implements Serializable {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    setDateOfBirth(dob);
-  }
-
-  /**
-   * Sets date of birth.
-   *
-   * @param dob the dob
-   * @throws ParseException the parse exception
-   */
-  public void setDateOfBirth(String dob) throws ParseException {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    Date date = dateFormat.parse(dob);
-    this.dateOfBirth = date;
+    this.dateOfBirth = dob;
   }
 }

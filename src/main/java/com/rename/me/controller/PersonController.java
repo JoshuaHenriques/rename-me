@@ -41,13 +41,14 @@ public class PersonController {
   public ResponseEntity<String> add(@RequestBody Person person)
       throws PersonAlreadyExistsException {
 
-    if (personService.existsByEmail(person.getEmail())) throw new PersonAlreadyExistsException();
+    if (personService.existsByEmail(person.getEmail())) {throw new PersonAlreadyExistsException();}
+    else {
+      personService.save(person);
 
-    personService.save(person);
-
-    HttpHeaders responseHeaders = new HttpHeaders();
-    responseHeaders.set("PersonController", "add");
-    return new ResponseEntity<>("Successfully Created Person", responseHeaders, HttpStatus.CREATED);
+      HttpHeaders responseHeaders = new HttpHeaders();
+      responseHeaders.set("PersonController", "add");
+      return new ResponseEntity<>("Successfully Created Person", responseHeaders, HttpStatus.CREATED);
+    }
   }
 
   /**
@@ -110,7 +111,7 @@ public class PersonController {
    * @return the by email
    * @throws PersonDoesNotExistsException the person not found exception
    */
-  @GetMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Person> getByEmail(@PathVariable String email)
       throws PersonDoesNotExistsException {
     if (personService.existsByEmail(email)) {
