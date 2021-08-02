@@ -1,8 +1,4 @@
 package com.rename.me.controller;
 
-/**
- * The type Person controller web mvc test.
- */
-public class PersonControllerWebMvcTest {
-	
-}
+/** The type Person controller web mvc test. */
+public class PersonControllerWebMvcTest {}

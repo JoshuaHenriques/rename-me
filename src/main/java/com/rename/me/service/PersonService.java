@@ -1,92 +1,89 @@
 package com.rename.me.service;
 
-import java.util.List;
-
 import com.rename.me.model.Person;
 import com.rename.me.repository.PersonRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * The type Person service.
- */
+import java.util.List;
+
+/** The type Person service. */
 @Service
 public class PersonService {
-	
-	private final PersonRepository personRepository;
 
-    /**
-     * Instantiates a new Person service.
-     *
-     * @param personRepository the person repository
-     */
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
+  private final PersonRepository personRepository;
 
-        this.personRepository = personRepository;
-        // this.orderDBService = orderDBService;
-    }
+  /**
+   * Instantiates a new Person service.
+   *
+   * @param personRepository the person repository
+   */
+  @Autowired
+  public PersonService(PersonRepository personRepository) {
 
-	/**
-     * Exists by phone number boolean.
-     *
-     * @param email the email
-     * @return the boolean
-     */
-public boolean existsByEmail(String email) {
+    this.personRepository = personRepository;
+    // this.orderDBService = orderDBService;
+  }
 
-        return personRepository.existsByEmail(email);
-    }
+  /**
+   * Save.
+   *
+   * @param person the person
+   */
+  public void save(Person person) {
 
-	    /**
-         * Gets by email.
-         *
-         * @param email the email
-         * @return the by email
-         */
-public Person getByEmail(String email) {
+    personRepository.save(person);
+  }
 
-        return personRepository.getByEmail(email);
-    }
+  /**
+   * Delete.
+   *
+   * @param person the person
+   */
+  public void delete(Person person) {
 
-    /**
-     * Save.
-     *
-     * @param person the person
-     */
-public void save(Person person) {
+    personRepository.delete(person);
+  }
 
-        personRepository.save(person);
-    }
+  /**
+   * Update.
+   *
+   * @param person the person
+   */
+  public void update(Person person) {
 
-    /**
-     * Delete.
-     *
-     * @param person the person
-     */
-public void delete(Person person) {
+    personRepository.save(person);
+  }
 
-        personRepository.delete(person);
-    }
+  /**
+   * Find all list.
+   *
+   * @return the list
+   */
+  public List<Person> findAll() {
+    // String sortBy
+    return personRepository.findAll();
+  }
 
-    /**
-     * Update.
-     *
-     * @param person the person
-     */
-public void update(Person person) {
+  /**
+   * Exists by phone number boolean.
+   *
+   * @param email the email
+   * @return the boolean
+   */
+  public boolean existsByEmail(String email) {
 
-        personRepository.save(person);
-    }
+    return personRepository.existsByEmail(email);
+  }
 
-    /**
-     * Find all list.
-     *
-     * @return the list
-     */
-public List<Person> findAll() {
-        // String sortBy
-        return personRepository.findAll();
-    }
+  /**
+   * Gets by email.
+   *
+   * @param email the email
+   * @return the by email
+   */
+  public Person getByEmail(String email) {
+
+    return personRepository.getByEmail(email);
+  }
 }
