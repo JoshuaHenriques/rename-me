@@ -7,15 +7,45 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-*In development*
 Springboot RESTful API bootstrap for a more complete project from spring initializer.
 
-    Includes One:    
-    Controller, Service, Repository, Model, Exception
-    Incudled Tests:
-    ControllerUnitTest, ControllerWebMvcTest, ServiceUnitTest, RepositoryJpaTest
-    Dependencies:
-    Spring Boot DevTools, Spring Web, Spring Data JPA, Lombok, Rest Repositories, PostgreSQL Driver
+Packaged with:
+
+    // MVC with DOA:    
+    
+    PersonController.java
+    
+    PersonService.java
+    
+    PersonRepository.java
+    
+    Person.java
+    
+    // Exceptions:
+
+    PersonDoesNotExistsException.java
+    
+    PersonAlreadyExistsException.java
+    
+    // 36 Tests:
+
+    PersonControllerTest.java
+    
+    PersonControllerWebMvcTest.java
+    
+    PersonRepositoryJpaTest.java
+    
+    PersonServiceTest.java
+    
+    RenameMeApplicationTest.java
+    
+Dependencies:
+    Spring Boot DevTools,
+    Spring Web,
+    Spring Data JPA,
+    Lombok,
+    Rest Repositories,
+    PostgreSQL Driver
 
 ### Built With
 
