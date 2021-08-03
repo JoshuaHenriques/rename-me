@@ -1,7 +1,7 @@
 <p align="center">
   <h3 align="center">rename-me</h3>
   <p align="center">
-    Springboot RESTful backend API Bootstrap
+    Springboot RESTful backend API bootstrap
   </p>
 </p>
 
