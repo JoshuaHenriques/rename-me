@@ -2,11 +2,9 @@ package com.rename.me.repository;
 
 import com.rename.me.model.Person;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -21,11 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 public class PersonRepositoryJpaTest {
 
-  @Autowired
-  private TestEntityManager entityManager;
+  @Autowired private TestEntityManager entityManager;
 
-  @Autowired
-  private PersonRepository personRepository;
+  @Autowired private PersonRepository personRepository;
 
   private Person person0, person1, person2;
 
@@ -41,18 +37,14 @@ public class PersonRepositoryJpaTest {
     person2 = new Person("Chris", "Knoxville", "knoxvillw.chris@gmail.com", "02/25/1985");
   }
 
-  /**
-   * Database should be empty.
-   */
+  /** Database should be empty. */
   @Test
   void emptyDatabase() {
     List<Person> personList = personRepository.findAll();
     assertThat(personList).isEmpty();
   }
 
-  /**
-   * Database should store customer.
-   */
+  /** Database should store customer. */
   @Test
   void storePerson() {
     Person _person = personRepository.save(person0);
@@ -62,9 +54,7 @@ public class PersonRepositoryJpaTest {
     assertThat(_person).hasFieldOrPropertyWithValue("email", "william.jay@gmail.com");
   }
 
-  /**
-   * Database should store customer.
-   */
+  /** Database should store customer. */
   @Test
   void deletePerson() {
     Person _person = entityManager.persist(person0);
@@ -76,9 +66,7 @@ public class PersonRepositoryJpaTest {
     assertThat(__person).isNull();
   }
 
-  /**
-   * Find all inventory.
-   */
+  /** Find all inventory. */
   @Test
   void findAllInventory() {
     entityManager.persist(person0);
@@ -90,9 +78,7 @@ public class PersonRepositoryJpaTest {
     assertThat(customer).hasSize(3).contains(person0, person1, person2);
   }
 
-  /**
-   * Exists by email.
-   */
+  /** Exists by email. */
   @Test
   void existsByEmail() {
     entityManager.persist(person0);
@@ -103,9 +89,7 @@ public class PersonRepositoryJpaTest {
     assertThat(exists).isTrue();
   }
 
-  /**
-   * Gets by email.
-   */
+  /** Gets by email. */
   @Test
   void getByEmail() {
     entityManager.persist(person0);

@@ -41,13 +41,15 @@ public class PersonController {
   public ResponseEntity<String> add(@RequestBody Person person)
       throws PersonAlreadyExistsException {
 
-    if (personService.existsByEmail(person.getEmail())) {throw new PersonAlreadyExistsException();}
-    else {
+    if (personService.existsByEmail(person.getEmail())) {
+      throw new PersonAlreadyExistsException();
+    } else {
       personService.save(person);
 
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.set("PersonController", "add");
-      return new ResponseEntity<>("Successfully Created Person", responseHeaders, HttpStatus.CREATED);
+      return new ResponseEntity<>(
+          "Successfully Created Person", responseHeaders, HttpStatus.CREATED);
     }
   }
 

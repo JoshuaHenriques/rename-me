@@ -34,6 +34,11 @@ public class PersonServiceTest {
 
   private List<Person> personList;
 
+  /**
+   * Sets up.
+   *
+   * @throws ParseException the parse exception
+   */
   @BeforeEach
   void setUp() throws ParseException {
     person = new Person("Amy", "Sanders", "sanders.amy09@gmail.com", "05/24/1986");
@@ -50,6 +55,7 @@ public class PersonServiceTest {
     personService = new PersonService(personRepository);
   }
 
+  /** Save. */
   @Test
   void save() {
     personService.save(this.person);
@@ -90,6 +96,7 @@ public class PersonServiceTest {
     assertThat(personList).isEqualTo(_personList);
   }
 
+  /** Exists by email will return true. */
   @Test
   void existsByEmailWillReturnTrue() {
     given(personRepository.existsByEmail("test.email@gmail.com")).willReturn(true);
@@ -101,6 +108,7 @@ public class PersonServiceTest {
     assertThat(exists).isTrue();
   }
 
+  /** Exists by email will return false. */
   @Test
   void existsByEmailWillReturnFalse() {
     given(personRepository.existsByEmail("test.email@gmail.com")).willReturn(false);
@@ -112,6 +120,7 @@ public class PersonServiceTest {
     assertThat(exists).isFalse();
   }
 
+  /** Gets by email. */
   @Test
   void getByEmail() {
     String email = "testMe@gmail.com";
