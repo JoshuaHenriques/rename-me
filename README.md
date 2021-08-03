@@ -9,6 +9,7 @@
 ## About The Project
 Springboot RESTful API bootstrap for a more complete project from spring initializer.
 
+
 Packaged with:
 
     // MVC with DOA:    
@@ -39,6 +40,18 @@ Packaged with:
     
     RenameMeApplicationTest.java
     
+
+Endpoints:
+
+    (api/person):
+    /add              POST  
+    /update           PUT
+    /delete/{email}   DELETE
+    /listAll          GET
+    /get/{email}      GET
+    /{email}/exists   GET
+
+
 Dependencies:
     Spring Boot DevTools,
     Spring Web,
