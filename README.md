@@ -84,5 +84,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 [https://joshuahenriques.com](https://joshuahenriques.com)
-
 [https://github.com/joshuahenriques/rename-me](https://github.comjoshuahenriques/rename-me)
