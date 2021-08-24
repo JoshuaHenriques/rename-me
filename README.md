@@ -43,13 +43,11 @@ PostgreSQL Driver
 ```
 
 ### Built With
-
 * [Springboot 2.5.3]
 * [Java 11]
 * [Gradle]
 
 ### Usage for CLI
-
 1. Clone the repo
    ```sh
    git clone https://github.com/joshuahenriques/rename-me.git
@@ -73,7 +71,6 @@ PostgreSQL Driver
    docker-compose up
 
 ## Contributing
-
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
@@ -83,11 +80,9 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 ## License
-
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
-
 [https://joshuahenriques.com](https://joshuahenriques.com)
 
 [https://github.com/joshuahenriques/rename-me](https://github.comjoshuahenriques/rename-me)
