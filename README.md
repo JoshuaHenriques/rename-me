@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center">Rename-Me</h3>
+  <h3 align="center">Rename Me</h3>
   <p align="center">
     Springboot RESTful Backend API Bootstrap
   </p>
