@@ -1,16 +1,17 @@
 package com.rename.me.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.io.Serializable;
+import java.text.ParseException;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.text.ParseException;
-import java.util.UUID;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /** The type Person. */
 @Getter
@@ -19,6 +20,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "person")
 public class Person implements Serializable {
+
+  private static final long serialVersionUID = -3706717403046249323L;
 
   @Id
   @Column(nullable = false, unique = true, length = 45)

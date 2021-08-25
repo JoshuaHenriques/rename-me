@@ -72,11 +72,12 @@ public class PersonControllerWebMvcTest {
   @Test
   void add() throws Exception {
     given(personService.existsByEmail(person0.getEmail())).willReturn(false);
+    given(personService.existsById(person0.getPersonUUID())).willReturn(false);
 
     mockMvc
         .perform(
             post("/api/person/add")
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(asJsonString(person0)))
         .andExpect(status().isCreated());
   }
@@ -89,6 +90,7 @@ public class PersonControllerWebMvcTest {
   @Test
   void addThrowsPersonAlreadyExistsException() throws Exception {
     given(personService.existsByEmail(person0.getEmail())).willReturn(true);
+    given(personService.existsById(person0.getPersonUUID())).willReturn(true);
 
     mockMvc
         .perform(
@@ -124,12 +126,12 @@ public class PersonControllerWebMvcTest {
   @Test
   void updateThrowsPersonDoesNotExistsException() throws Exception {
     given(personService.existsByEmail(person0.getEmail())).willReturn(false);
-    given(personService.existsById(person0.getPersonUUID())).willReturn(true);
+    given(personService.existsById(person0.getPersonUUID())).willReturn(false);
 
 
     mockMvc
         .perform(
-            put("/api/person/update{person0Id}", person0Id)
+            put("/api/person/update/{person0Id}", person0Id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(person0)))
         .andExpect(status().isBadRequest());
@@ -171,7 +173,7 @@ public class PersonControllerWebMvcTest {
   void getByEmail() throws Exception {
     given(personService.existsByEmail("william.jay@gmail.com")).willReturn(true);
 
-    mockMvc.perform(get("/api/person/get/william.jay@gmail.com")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/getByEmail/william.jay@gmail.com")).andExpect(status().isOk());
   }
 
   /**
@@ -184,7 +186,7 @@ public class PersonControllerWebMvcTest {
     given(personService.existsByEmail("william.jay@gmail.com")).willReturn(false);
 
     mockMvc
-        .perform(get("/api/person/get/william.jay@gmail.com"))
+        .perform(get("/api/person/getByEmail/william.jay@gmail.com"))
         .andExpect(status().isBadRequest());
   }
 
@@ -197,7 +199,7 @@ public class PersonControllerWebMvcTest {
   void existsByEmailReturnsTrue() throws Exception {
     given(personService.existsByEmail(person0.getEmail())).willReturn(true);
 
-    mockMvc.perform(get("/api/person/william.jay@gmail.com/exists")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/existsByEmail/william.jay@gmail.com")).andExpect(status().isOk());
   }
 
   /**
@@ -209,7 +211,7 @@ public class PersonControllerWebMvcTest {
   void existsByEmailReturnsFalse() throws Exception {
     given(personService.existsByEmail(person0.getEmail())).willReturn(false);
 
-    mockMvc.perform(get("/api/person/william.jay@gmail.com/exists")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/existsByEmail/william.jay@gmail.com")).andExpect(status().isOk());
   }
 
   /**
@@ -232,7 +234,7 @@ public class PersonControllerWebMvcTest {
   void getById() throws Exception {
     given(personService.existsById(person0Id)).willReturn(true);
 
-    mockMvc.perform(get("/api/person/get/{person0Id}", person0Id)).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/getId/{person0Id}", person0Id)).andExpect(status().isOk());
   }
 
   /**
@@ -245,7 +247,7 @@ public class PersonControllerWebMvcTest {
     given(personService.existsById(person0Id)).willReturn(false);
 
     mockMvc
-        .perform(get("/api/person/get/{person0Id}", person0Id))
+        .perform(get("/api/person/getId/{person0Id}", person0Id))
         .andExpect(status().isBadRequest());
   }
 
@@ -258,7 +260,7 @@ public class PersonControllerWebMvcTest {
   void existsByIdReturnsTrue() throws Exception {
     given(personService.existsById(person0.getPersonUUID())).willReturn(true);
 
-    mockMvc.perform(get("/api/person/william.jay@gmail.com/exists")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/existsById/{person0Id}", person0Id)).andExpect(status().isOk());
   }
 
   /**
@@ -270,6 +272,6 @@ public class PersonControllerWebMvcTest {
   void existsByIdReturnsFalse() throws Exception {
     given(personService.existsById(person0.getPersonUUID())).willReturn(false);
 
-    mockMvc.perform(get("/api/person/william.jay@gmail.com/exists")).andExpect(status().isOk());
+    mockMvc.perform(get("/api/person/existsById/{person0Id}", person0Id)).andExpect(status().isOk());
   }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.rename.me.exception.InvalidPersonException;
 import com.rename.me.exception.PersonAlreadyExistsException;
 import com.rename.me.exception.PersonDoesNotExistsException;
 import com.rename.me.model.Person;
@@ -73,9 +74,10 @@ public class PersonControllerTest {
    * Add.
    *
    * @throws PersonAlreadyExistsException the person already exists exception
+   * @throws InvalidPersonException
    */
   @Test
-  void add() throws PersonAlreadyExistsException {
+  void add() throws PersonAlreadyExistsException, InvalidPersonException {
     given(personService.existsByEmail(person.getEmail())).willReturn(false);
     given(personService.existsById(person.getPersonUUID())).willReturn(false);
 
@@ -101,10 +103,10 @@ public class PersonControllerTest {
    * Update.
    *
    * @throws PersonDoesNotExistsException the person does not exists exception
+   * @throws InvalidPersonException
    */
   @Test
-  void update() throws PersonDoesNotExistsException {
-    given(personService.existsByEmail(person.getEmail())).willReturn(true);
+  void update() throws PersonDoesNotExistsException, InvalidPersonException {
     given(personService.existsById(personId)).willReturn(true);
 
     ResponseEntity<String> response = personController.update(person, personId);
@@ -151,7 +153,7 @@ public class PersonControllerTest {
 
     assertThrows(
         PersonDoesNotExistsException.class,
-        () -> personController.delete(person.getEmail()));
+        () -> personController.delete(person.getPersonUUID()));
   }
 
   /** List all. */

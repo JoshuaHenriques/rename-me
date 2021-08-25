@@ -3,6 +3,7 @@ package com.rename.me.interfaces;
 import java.util.List;
 import java.util.UUID;
 
+import com.rename.me.exception.InvalidPersonException;
 import com.rename.me.exception.PersonAlreadyExistsException;
 import com.rename.me.exception.PersonDoesNotExistsException;
 import com.rename.me.model.Person;
@@ -20,14 +21,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface ControllerI {
 	
 	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<String> add(@RequestBody Person person) throws PersonAlreadyExistsException;
+	ResponseEntity<String> add(@RequestBody Person person) throws PersonAlreadyExistsException, InvalidPersonException, InvalidPersonException;
 
 	@PutMapping(value = "/update/{personId}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<String> update(@RequestBody @ModelAttribute Person person, @PathVariable UUID personId)
-		throws PersonDoesNotExistsException;
+		throws PersonDoesNotExistsException, InvalidPersonException;
 
-	@DeleteMapping(value = "/delete/{email}")
-	ResponseEntity<String> delete(@PathVariable String email) throws PersonDoesNotExistsException;
+	@DeleteMapping(value = "/delete/{personId}")
+	ResponseEntity<String> delete(@PathVariable UUID personId) throws PersonDoesNotExistsException;
 
 	@GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<Person>> listAll();
