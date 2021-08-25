@@ -1,15 +1,18 @@
 package com.rename.me.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import com.rename.me.interfaces.ServiceI;
 import com.rename.me.model.Person;
 import com.rename.me.repository.PersonRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-/** The type Person service. */
+/** The type Person service. */ 
 @Service
-public class PersonService {
+public class PersonService implements ServiceI {
 
   private final PersonRepository personRepository;
 
@@ -85,5 +88,27 @@ public class PersonService {
   public Person getByEmail(String email) {
 
     return personRepository.getByEmail(email);
+  }
+
+    /**
+   * Exists by phone number boolean.
+   *
+   * @param email the email
+   * @return the boolean
+   */
+  public boolean existsById(UUID uuid) {
+
+    return personRepository.existsById(uuid);
+  }
+
+  /**
+   * Gets by email.
+   *
+   * @param email the email
+   * @return the by email
+   */
+  public Person getById(UUID uuid) {
+
+    return personRepository.getById(uuid);
   }
 }
