@@ -1,12 +1,12 @@
 <p align="center">
-  <h3 align="center">Rename Me</h3>
+  <h3 align="center">Spring Boot Bootstrap</h3>
   <p align="center">
-    Springboot RESTful Backend API Bootstrap
+    REST API Application
   </p>
 </p>
 
 ## About The Project
-Springboot RESTful API bootstrap for a more complete project from spring initializer.  
+Spring boot REST API bootstrap for a more complete project from spring initializer.  
 
 #### Endpoints:
 ```
@@ -50,7 +50,7 @@ PostgreSQL Driver
 ### Usage for CLI
 1. Clone the repo
    ```sh
-   git clone https://github.com/joshuahenriques/rename-me.git
+   git clone https://github.com/joshuahenriques/spring-boot-bootstrap.git
    ```
 3. In root directory build the app
    ```sh
@@ -64,7 +64,7 @@ PostgreSQL Driver
 #### Usage for Docker
 1. Clone the repo
    ```sh
-   git clone https://github.com/joshuahenriques/rename-me.git
+   git clone https://github.com/joshuahenriques/spring-boot-bootstrap.git
    ```
 2. In root directory build the app
    ```sh
@@ -85,4 +85,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 [https://joshuahenriques.com](https://joshuahenriques.com)
 
-[https://github.com/joshuahenriques/rename-me](https://github.comjoshuahenriques/rename-me)
+[https://github.com/joshuahenriques/spring-boot-bootstrap](https://github.comjoshuahenriques/spring-boot-bootstrap)
