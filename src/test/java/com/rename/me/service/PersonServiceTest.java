@@ -1,7 +1,17 @@
 package com.rename.me.service;
 
-import com.rename.me.model.Person;
-import com.rename.me.repository.PersonRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bootstrap.me.model.Person;
+import com.bootstrap.me.repository.PersonRepository;
+import com.bootstrap.me.service.PersonService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,14 +19,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 
 /** The type Person service unit test. */
 @ExtendWith(MockitoExtension.class)

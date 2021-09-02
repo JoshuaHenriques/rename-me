@@ -1,24 +1,24 @@
 version: "3.9"
 services:
-  renameme:
+  bootstrap:
     build: .
     restart: always
     ports:
       - "8082:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/renameme
-      - SPRING_DATASOURCE_USER=postgres
-      - SPRIG_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/bootstrap_db
+      - SPRING_DATASOURCE_USER=user
+      - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - postgres_db
   postgres_db:
     image: postgres:latest
     restart: always
     volumes:
-      - ../db/renameme-data:/var/lib/postgresql/data
+      - ../db/bootstrap_db:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: renameme
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: bootstrap_db

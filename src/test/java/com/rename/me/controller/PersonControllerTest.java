@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.rename.me.exception.InvalidPersonException;
-import com.rename.me.exception.PersonAlreadyExistsException;
-import com.rename.me.exception.PersonDoesNotExistsException;
-import com.rename.me.model.Person;
-import com.rename.me.service.PersonService;
+import com.bootstrap.me.controller.PersonController;
+import com.bootstrap.me.exception.InvalidPersonException;
+import com.bootstrap.me.exception.PersonAlreadyExistsException;
+import com.bootstrap.me.exception.PersonDoesNotExistsException;
+import com.bootstrap.me.model.Person;
+import com.bootstrap.me.service.PersonService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -10,9 +10,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.text.ParseException;
 import java.util.UUID;
 
+import com.bootstrap.me.controller.PersonController;
+import com.bootstrap.me.model.Person;
+import com.bootstrap.me.service.PersonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rename.me.model.Person;
-import com.rename.me.service.PersonService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
