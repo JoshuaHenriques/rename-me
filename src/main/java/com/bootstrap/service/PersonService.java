@@ -1,114 +1,75 @@
-package com.bootstrap.me.service;
+package com.bootstrap.service;
+
+import com.bootstrap.interfaces.ServiceI;
+import com.bootstrap.model.Person;
+import com.bootstrap.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-import com.bootstrap.me.interfaces.ServiceI;
-import com.bootstrap.me.model.Person;
-import com.bootstrap.me.repository.PersonRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-/** The type Person service. */ 
+/**
+ * The type Person service.
+ */
 @Service
 public class PersonService implements ServiceI {
 
-  private final PersonRepository personRepository;
-
-  /**
-   * Instantiates a new Person service.
-   *
-   * @param personRepository the person repository
-   */
-  @Autowired
-  public PersonService(PersonRepository personRepository) {
-
-    this.personRepository = personRepository;
-    // this.orderDBService = orderDBService;
-  }
-
-  /**
-   * Save.
-   *
-   * @param person the person
-   */
-  public void save(Person person) {
-
-    personRepository.save(person);
-  }
-
-  /**
-   * Delete.
-   *
-   * @param person the person
-   */
-  public void delete(Person person) {
-
-    personRepository.delete(person);
-  }
-
-  /**
-   * Update.
-   *
-   * @param person the person
-   */
-  public void update(Person person) {
-
-    personRepository.save(person);
-  }
-
-  /**
-   * Find all list.
-   *
-   * @return the list
-   */
-  public List<Person> findAll() {
-    // String sortBy
-    return personRepository.findAll();
-  }
-
-  /**
-   * Exists by phone number boolean.
-   *
-   * @param email the email
-   * @return the boolean
-   */
-  public boolean existsByEmail(String email) {
-
-    return personRepository.existsByEmail(email);
-  }
-
-  /**
-   * Gets by email.
-   *
-   * @param email the email
-   * @return the by email
-   */
-  public Person getByEmail(String email) {
-
-    return personRepository.getByEmail(email);
-  }
+    private final PersonRepository personRepository;
 
     /**
-   * Exists by phone number boolean.
-   *
-   * @param email the email
-   * @return the boolean
-   */
-  public boolean existsById(UUID uuid) {
+     * Instantiates a new Person service.
+     *
+     * @param personRepository the person repository
+     */
+    @Autowired
+    public PersonService(PersonRepository personRepository) {
 
-    return personRepository.existsById(uuid);
-  }
+        this.personRepository = personRepository;
+    }
 
-  /**
-   * Gets by email.
-   *
-   * @param email the email
-   * @return the by email
-   */
-  public Person getById(UUID uuid) {
+    public void save(Person person) {
 
-    return personRepository.getById(uuid);
-  }
+        personRepository.save(person);
+    }
+
+    public void delete(Person person) {
+
+        personRepository.delete(person);
+    }
+
+    /**
+     * Update.
+     *
+     * @param person the person
+     */
+    public void update(Person person) {
+
+        personRepository.save(person);
+    }
+
+    public List<Person> findAll() {
+
+        return personRepository.findAll();
+    }
+
+    public boolean existsByEmail(String email) {
+
+        return personRepository.existsByEmail(email);
+    }
+
+    public Person getByEmail(String email) {
+
+        return personRepository.getByEmail(email);
+    }
+
+    public boolean existsById(UUID uuid) {
+
+        return personRepository.existsById(uuid);
+    }
+
+    public Person getById(UUID uuid) {
+
+        return personRepository.getById(uuid);
+    }
 }

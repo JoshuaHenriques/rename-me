@@ -1,47 +1,98 @@
-package com.bootstrap.me.interfaces;
+package com.bootstrap.interfaces;
+
+import com.bootstrap.exception.InvalidPersonException;
+import com.bootstrap.exception.PersonAlreadyExistsException;
+import com.bootstrap.exception.PersonDoesNotExistsException;
+import com.bootstrap.model.Person;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-import com.bootstrap.me.exception.InvalidPersonException;
-import com.bootstrap.me.exception.PersonAlreadyExistsException;
-import com.bootstrap.me.exception.PersonDoesNotExistsException;
-import com.bootstrap.me.model.Person;
-
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
+/**
+ * The interface Controller i.
+ */
 public interface ControllerI {
-	
-	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<String> add(@RequestBody Person person) throws PersonAlreadyExistsException, InvalidPersonException, InvalidPersonException;
 
-	@PutMapping(value = "/update/{personId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<String> update(@RequestBody @ModelAttribute Person person, @PathVariable UUID personId)
-		throws PersonDoesNotExistsException, InvalidPersonException;
+    /**
+     * Add response entity.
+     *
+     * @param person the person
+     * @return the response entity
+     * @throws PersonAlreadyExistsException the person already exists exception
+     * @throws InvalidPersonException       the invalid person exception
+     */
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<String> add(@RequestBody Person person) throws PersonAlreadyExistsException, InvalidPersonException;
 
-	@DeleteMapping(value = "/delete/{personId}")
-	ResponseEntity<String> delete(@PathVariable UUID personId) throws PersonDoesNotExistsException;
+    /**
+     * Update response entity.
+     *
+     * @param person   the person
+     * @param personId the person id
+     * @return the response entity
+     * @throws PersonDoesNotExistsException the person does not exists exception
+     * @throws InvalidPersonException       the invalid person exception
+     */
+    @PutMapping(value = "/update/{personId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<String> update(@RequestBody @ModelAttribute Person person, @PathVariable UUID personId)
+            throws PersonDoesNotExistsException, InvalidPersonException;
 
-	@GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<Person>> listAll();
-	
-	@GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Person> getByEmail(@PathVariable String email) throws PersonDoesNotExistsException;
+    /**
+     * Delete response entity.
+     *
+     * @param personId the person id
+     * @return the response entity
+     * @throws PersonDoesNotExistsException the person does not exists exception
+     */
+    @DeleteMapping(value = "/delete/{personId}")
+    ResponseEntity<String> delete(@PathVariable UUID personId) throws PersonDoesNotExistsException;
 
-	@GetMapping(value = "/{email}/exists")
-	ResponseEntity<Boolean> existsByEmail(@PathVariable String email);
+    /**
+     * List all response entity.
+     *
+     * @return the response entity
+     */
+    @GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<Person>> listAll();
 
-	@GetMapping(value = "/get/{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Person> getById(@PathVariable UUID personId) throws PersonDoesNotExistsException;
+    /**
+     * Gets by email.
+     *
+     * @param email the email
+     * @return the by email
+     * @throws PersonDoesNotExistsException the person does not exists exception
+     */
+    @GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Person> getByEmail(@PathVariable String email) throws PersonDoesNotExistsException;
 
-	@GetMapping(value = "/{personId}/exists")
-	ResponseEntity<Boolean> existsById(@PathVariable UUID personId);
+    /**
+     * Exists by email response entity.
+     *
+     * @param email the email
+     * @return the response entity
+     */
+    @GetMapping(value = "/{email}/exists")
+    ResponseEntity<Boolean> existsByEmail(@PathVariable String email);
+
+    /**
+     * Gets by id.
+     *
+     * @param personId the person id
+     * @return the by id
+     * @throws PersonDoesNotExistsException the person does not exists exception
+     */
+    @GetMapping(value = "/get/{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Person> getById(@PathVariable UUID personId) throws PersonDoesNotExistsException;
+
+    /**
+     * Exists by id response entity.
+     *
+     * @param personId the person id
+     * @return the response entity
+     */
+    @GetMapping(value = "/{personId}/exists")
+    ResponseEntity<Boolean> existsById(@PathVariable UUID personId);
 }

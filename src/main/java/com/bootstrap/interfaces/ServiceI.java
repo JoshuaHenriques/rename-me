@@ -1,17 +1,65 @@
-package com.bootstrap.me.interfaces;
+package com.bootstrap.interfaces;
+
+import com.bootstrap.model.Person;
 
 import java.util.List;
 import java.util.UUID;
 
-import com.bootstrap.me.model.Person;
-
+/**
+ * The interface Service i.
+ */
 public interface ServiceI {
-	
-	void save(Person person);
-	void delete(Person person);
-	List<Person> findAll();
-	boolean existsByEmail(String email);
-	Person getByEmail(String email);
-	boolean existsById(UUID uuid);
-	Person getById(UUID uuid);
+
+    /**
+     * Save.
+     *
+     * @param person the person
+     */
+    void save(Person person);
+
+    /**
+     * Delete.
+     *
+     * @param person the person
+     */
+    void delete(Person person);
+
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
+    List<Person> findAll();
+
+    /**
+     * Exists by email boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
+    boolean existsByEmail(String email);
+
+    /**
+     * Gets by email.
+     *
+     * @param email the email
+     * @return the by email
+     */
+    Person getByEmail(String email);
+
+    /**
+     * Exists by id boolean.
+     *
+     * @param uuid the uuid
+     * @return the boolean
+     */
+    boolean existsById(UUID uuid);
+
+    /**
+     * Gets by id.
+     *
+     * @param uuid the uuid
+     * @return the by id
+     */
+    Person getById(UUID uuid);
 }
